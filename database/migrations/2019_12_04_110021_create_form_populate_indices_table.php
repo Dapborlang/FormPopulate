@@ -30,10 +30,15 @@ class CreateFormPopulateIndicesTable extends Migration
 
         DB::table('form_populate_indices')->insert(
             array(
-                'form_populate_id' =>'1',
+                ['form_populate_id' =>'1',
                 'exclude' => '["id","updated_at","created_at"]',
                 'notes' => '[""]',
-                'cnotes' => '[""]'
+                'cnotes' => '[""]'],
+
+                ['form_populate_id' =>'2',
+                'exclude' => '["id","updated_at","created_at"]',
+                'notes' => '[""]',
+                'cnotes' => '[""]']
             )
         );
     }

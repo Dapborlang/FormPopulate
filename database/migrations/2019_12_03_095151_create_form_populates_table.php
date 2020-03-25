@@ -25,11 +25,17 @@ class CreateFormPopulatesTable extends Migration
 
         DB::table('form_populates')->insert(
             array(
-                'header' => 'Roles',
+                ['header' => 'Roles Name',
                 'table_name' => 'role_names',
                 'model' => 'RoleName',
                 'route' => 'formbuilder',
-                'role' => 'ADM'
+                'role' => 'ADM'],
+
+                ['header' => 'Roles',
+                'table_name' => 'roles',
+                'model' => 'Role',
+                'route' => 'formbuilder',
+                'role' => 'ADM']
             )
         );
     }
