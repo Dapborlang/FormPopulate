@@ -35,11 +35,23 @@ class CreateFormPopulateIndicesTable extends Migration
                 'notes' => '[""]',
                 'cnotes' => '[""]'],
 
-                ['form_populate_id' =>'2',
+                ['form_populate_id' =>'1',
                 'exclude' => '["id","updated_at","created_at"]',
                 'notes' => '[""]',
                 'cnotes' => '[""]']
             )
+            // {
+            //     "User": [
+            //         "user_id",
+            //         "id",
+            //         "email"
+            //     ],
+            //     "RoleName": [
+            //         "role",
+            //         "role",
+            //         "detail"
+            //     ]
+            // }
         );
     }
 
