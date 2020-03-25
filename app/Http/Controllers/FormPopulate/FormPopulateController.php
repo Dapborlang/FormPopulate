@@ -10,7 +10,9 @@ class FormPopulateController extends Controller
 {
     public function __construct()
     {
+        $data="ADM";
         $this->middleware('auth');
+        $this->middleware('formAuth:'.$data);
     }
 
     public function index()

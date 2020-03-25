@@ -8,9 +8,11 @@ use App\FormPopulateIndex;
 
 class FormBuilderController extends Controller
 {
-    public function __construct()
+    public function __construct(Request $request)
     {
+        $role=FormPopulate::findOrFail($request->id);
         $this->middleware('auth');
+        $this->middleware('formAuth:'.$role->role);
     }
     
     public function index($id)
