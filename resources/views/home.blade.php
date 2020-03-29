@@ -10,7 +10,7 @@
                 <div class="card-body">
                     @foreach(Auth::user()->role as $item)
                         @foreach($item->link as $item1)
-                            <a href="{{ url('/') }}/{{$item1->route}}/{{$item1->id}}/create">{{$item1->header}}</a>
+                            <a href="{{ url('/') }}/{{$item1->route}}/{{$item1->id}}/create">{{$item1->header}}</a> <br>
                         @endforeach
                     @endforeach
                 </div>
