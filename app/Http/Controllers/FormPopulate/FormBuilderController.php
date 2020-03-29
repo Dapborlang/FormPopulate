@@ -19,7 +19,7 @@ class FormBuilderController extends Controller
     {
         $model=FormPopulate::findOrFail($id);
         $values='App\\'.$model->model;
-        $table=$values::all();
+        $table=$values::orderBy('id', 'desc')->limit(50)->get();
         $exclude=json_decode($model->index->exclude);
         $columns = \DB::connection()->getSchemaBuilder()->getColumnListing($model->table_name);
         return view('formview.index', compact('columns','model','exclude','table')); 

@@ -33,7 +33,27 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                    @auth
+                    @foreach(Auth::user()->role as $item)
+                        @if($item->role == 'ADM')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/') }}/formpopulate/create">Create Form</a>
+                            </li>
+                        @endif
+                        @foreach($item->link as $item1)
+                            
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                    {{$item1->header}}
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ url('/') }}/{{$item1->route}}/{{$item1->id}}">View/Edit</a>
+                                        <a class="dropdown-item" href="{{ url('/') }}/{{$item1->route}}/{{$item1->id}}/create">Create</a>
+                                    </div>
+                                </li>
+                        @endforeach
+                    @endforeach
+                    @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
