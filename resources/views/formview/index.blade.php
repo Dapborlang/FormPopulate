@@ -6,6 +6,21 @@
 	<div class="card">
 		<div class="card-header bg-info">{{$model->header}}</div>
 		<div class="card-body">	
+		<form method="post" action="{{ url('/') }}/frmbuilde/{{$model->id}}">
+		  {{csrf_field()}}
+		  <div class="row">
+		    <div class="col-sm-4">
+		      <div class="form-group">
+              <input type="text" class="form-control" id="data" name="data">
+          </div>
+		    </div>
+		    <div class="col-sm-4">
+		      <div class="form-group">
+              <input type="submit" class="btn btn-primary" value="Submit">
+          </div>
+		    </div>
+		  </div>
+		  
 		<table class="table table-bordered">
 			<tr>
 			@foreach($columns as $item)
