@@ -21,8 +21,17 @@ class FormBuilderController extends Controller
         $values='App\\'.$model->model;
         $table=$values::orderBy('id', 'desc')->limit(50)->get();
         $exclude=json_decode($model->index->exclude);
+        $foreign=json_decode($model->index->foreign_keys, true);
         $columns = \DB::connection()->getSchemaBuilder()->getColumnListing($model->table_name);
-        return view('formview.index', compact('columns','model','exclude','table')); 
+        $select=array();
+        if(sizeof((array)$foreign)>0)
+        {
+            foreach (array_keys($foreign) as $key) {
+                $select[$foreign[$key][0]]=array($key,$foreign[$key][2]);
+            }
+        }
+
+        return view('formview.index', compact('columns','model','exclude','table','select')); 
     }
     
     public function create($id)

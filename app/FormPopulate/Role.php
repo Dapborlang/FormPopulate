@@ -12,4 +12,14 @@ class Role extends Model
     {
        return $this->hasMany('App\FormPopulate','role','role');
     }
+
+    public function RoleName()
+    {
+       return $this->belongsTo('App\RoleName','role','role');
+    }
+
+    public function User()
+    {
+       return $this->belongsTo('App\User','user_id','id');
+    }
 }
