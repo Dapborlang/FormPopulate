@@ -17,18 +17,30 @@ class FormBuilderController extends Controller
     
     public function index($id,Request $request)
     {
+        $dataString=$request->search;
         $model=FormPopulate::findOrFail($id);
         $values='App\\'.$model->model;
+        $foreign=json_decode($model->index->foreign_keys, true);
+        $table=$values::orderBy('id', 'desc');
         if ($request->isMethod('post')) {
-            $table=$values::orderBy('id', 'desc')->limit(1)->get();
-        }
-        else{
-            $table=$values::orderBy('id', 'desc')->limit(50)->get();
+            if(sizeof((array)$foreign)>0)
+            {
+                foreach (array_keys($foreign) as $key) {
+                    $param=$foreign[$key][2];
+                    $table=$table->orWhereHas($key, function ($query) use($param,$dataString) {
+                        $query->where($param,'like','%'.$dataString.'%');
+                    });
+                }
+            }
         }
         
         $exclude=json_decode($model->index->exclude);
-        $foreign=json_decode($model->index->foreign_keys, true);
         $columns = \DB::connection()->getSchemaBuilder()->getColumnListing($model->table_name);
+        foreach($columns as $data)
+        {
+            $table=$table->orWhere($data,'like','%'.$dataString.'%');
+        }
+        $table=$table->limit(50)->get();
         $select=array();
         if(sizeof((array)$foreign)>0)
         {
