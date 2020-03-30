@@ -15,11 +15,17 @@ class FormBuilderController extends Controller
         $this->middleware('formAuth:'.$role->role);
     }
     
-    public function index($id)
+    public function index($id,Request $request)
     {
         $model=FormPopulate::findOrFail($id);
         $values='App\\'.$model->model;
-        $table=$values::orderBy('id', 'desc')->limit(50)->get();
+        if ($request->isMethod('post')) {
+            $table=$values::orderBy('id', 'desc')->limit(1)->get();
+        }
+        else{
+            $table=$values::orderBy('id', 'desc')->limit(50)->get();
+        }
+        
         $exclude=json_decode($model->index->exclude);
         $foreign=json_decode($model->index->foreign_keys, true);
         $columns = \DB::connection()->getSchemaBuilder()->getColumnListing($model->table_name);

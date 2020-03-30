@@ -26,6 +26,7 @@ Route::resource('formpopulateindex','FormPopulateIndexController');
 Route::get('formbuilder/{id}','FormBuilderController@index');
 Route::get('formbuilder/{id}/create','FormBuilderController@create');
 Route::post('formbuilder/{id}','FormBuilderController@store');
+Route::post('formbuilder/{id}/index','FormBuilderController@index');
 
 Route::get('frmbuilder/{id}/{cid}','FormBuilderController@show');
 Route::get('frmbuilder/edit/{id}/{cid}','FormBuilderController@edit');

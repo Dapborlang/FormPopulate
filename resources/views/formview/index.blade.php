@@ -6,7 +6,16 @@
 	<div class="card">
 		<div class="card-header bg-info">{{$model->header}}</div>
 		<div class="card-body">	
-		<table class="table table-bordered">
+		<form method="POST" action="{{url('/')}}/{{$model->route}}/{{$model->id}}/index">
+			{{csrf_field()}}
+			<div class="col-sm-5">
+				<table class="table table-striped">
+					<td><input type="text" class="form-control" name="search" placeholder="Enter Text To Search"></td>
+					<td><input type="submit" class="form-control btn btn-primary" value="Search"></td>
+				</table>
+			</div>
+		</form>
+		<table class="table table-hover">
 			<tr>
 			@foreach($columns as $item)
 				@if(!in_array($item,$exclude))
