@@ -15,6 +15,10 @@ class CreateFileStoragesTable extends Migration
     {
         Schema::create('file_storages', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('filename');
+            $table->string('detail');
+            $table->string('uri');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }
