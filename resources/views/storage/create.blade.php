@@ -8,7 +8,7 @@
 	        {{ session()->get('message') }}
 	    </div>
 	@endif
-	<form method="POST" action="{{ url('/') }}/storage" target="">
+	<form method="POST" action="{{ url('/') }}/storage" entype="multipart/form-data">
 	{{ csrf_field() }}
 	<div class="card bg-secondary text-white">
 		<div class="card-header bg-info">Storage</div>

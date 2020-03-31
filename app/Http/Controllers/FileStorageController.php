@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\FileStorage;
 use Illuminate\Http\Request;
-
+use Storage;
 class FileStorageController extends Controller
 {
     /**
@@ -35,7 +35,18 @@ class FileStorageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->hasFile('file'))
+        {
+            $request->file('file');
+            $uri=Storage::putFile('public',$request->file('file'));
+            $files=new FileStorage;
+            $files->filename = $request->fname;
+            $files->detail = $request->detail;
+            $files->uri = $uri;
+        }
+        else{
+            return "Please select a file";
+        }
     }
 
     /**
