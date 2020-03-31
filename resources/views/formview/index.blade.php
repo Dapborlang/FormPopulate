@@ -10,8 +10,8 @@
 			{{csrf_field()}}
 			<div class="col-sm-5">
 				<table class="table table-striped">
-					<td><input type="text" class="form-control" name="search" placeholder="Enter Text To Search"></td>
-					<td><input type="submit" class="form-control btn btn-primary" value="Search"></td>
+					<td><input type="text" class="form-control form-control-sm" name="search" placeholder="Enter Text To Search"></td>
+					<td><button type="submit" class="btn btn-primary btn-sm">Search</button></td>
 				</table>
 			</div>
 		</form>
