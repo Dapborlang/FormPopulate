@@ -8,7 +8,7 @@
 	        {{ session()->get('message') }}
 	    </div>
 	@endif
-	<form method="POST" action="{{ url('/') }}/storage" entype="multipart/form-data">
+	<form method="POST" action="{{ url('/') }}/storage" enctype="multipart/form-data">
 	{{ csrf_field() }}
 	<div class="card bg-secondary text-white">
 		<div class="card-header bg-info">Storage</div>
@@ -27,7 +27,7 @@
                 <div class="col-sm-6">
 					<div class="form-group">
 		                <label for="file">File</label>		                
-		                <input type="file" class="form-control" id="file" name="file">
+		                <input type="file" class="form-control" id="filedata" name="filedata">
 					</div>
                 </div>
 			</div>
