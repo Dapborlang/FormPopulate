@@ -8,6 +8,11 @@
 	        {{ session()->get('message') }}
 	    </div>
 	@endif
+	@if(session()->has('fail'))
+	    <div class="alert alert-danger">
+	        {{ session()->get('fail') }}
+	    </div>
+	@endif
 	<form method="POST" action="{{ url('/') }}/storage" enctype="multipart/form-data">
 	{{ csrf_field() }}
 	<div class="card bg-secondary text-white">

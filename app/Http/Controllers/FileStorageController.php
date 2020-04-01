@@ -13,6 +13,13 @@ class FileStorageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(Request $request)
+    {
+        $this->middleware('auth');
+        $this->middleware('formAuth:STG');
+    }
+
     public function index()
     {
         //
@@ -46,9 +53,10 @@ class FileStorageController extends Controller
             $files->uri = $uri;
             $files->user_id=Auth::user()->id;
             $files->save();
+            return redirect()->back()->with('message', 'Added Successfully');
         }
         else{
-            return "Please select a file";
+            return redirect()->back()->with('fail', 'Fail to upload');
         }
     }
 

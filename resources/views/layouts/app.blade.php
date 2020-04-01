@@ -40,6 +40,11 @@
                                 <a class="nav-link" href="{{ url('/') }}/formpopulate/create">Create Form</a>
                             </li>
                         @endif
+                        @if($item->role == 'STG')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/') }}/storage/create">Create Form</a>
+                            </li>
+                        @endif
                         @foreach($item->link as $item1)
                             
                                 <li class="nav-item dropdown">
