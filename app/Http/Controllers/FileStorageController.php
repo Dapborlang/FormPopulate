@@ -22,7 +22,10 @@ class FileStorageController extends Controller
 
     public function index()
     {
-        //
+        $user=Auth::user()->id;
+        $storageList=FileStorage::where('user_id',$user)
+        ->get();
+        return view('storage.index',compact('storageList'));
     }
 
     /**

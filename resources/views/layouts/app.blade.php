@@ -41,8 +41,16 @@
                             </li>
                         @endif
                         @if($item->role == 'STG')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/') }}/storage/create">Create Form</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                File Storage
+                              </a>
+                                <div class="dropdown-menu">
+                                  <a class="dropdown-item" href="{{ url('/') }}/storage">View/Delete Files</a>
+                                    <a class="dropdown-item" href="{{ url('/') }}/storage/create">Upload File</a>
+                                    
+                                </div>
+                            
                             </li>
                         @endif
                         @foreach($item->link as $item1)
