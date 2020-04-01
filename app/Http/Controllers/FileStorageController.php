@@ -48,8 +48,8 @@ class FileStorageController extends Controller
     {
         if($request->hasFile('filedata'))
         {
-            $request->file('filedata');
-            $uri=Storage::putFile('public',$request->file('filedata'));
+            $extension = $request->file('filedata')->extension();
+            $uri=Storage::putFileAs('public',$request->file('filedata'),$request->fname.'.'.$extension);
             $files=new FileStorage;
             $files->filename = $request->fname;
             $files->detail = $request->detail;

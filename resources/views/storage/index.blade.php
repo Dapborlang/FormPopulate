@@ -4,7 +4,7 @@
 @section('content')
 <div class="container-fluid">
 	@foreach($storageList as $item)
-	  {{$item->uri}}
+	<img src= "{{asset($item->uri) }}" alt="Card image cap">
 	@endforeach
 </div>
 @endsection

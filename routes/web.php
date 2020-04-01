@@ -33,4 +33,4 @@ Route::get('frmbuilder/edit/{id}/{cid}','FormBuilderController@edit');
 Route::put('frmbuilder/update/{id}/{cid}','FormBuilderController@update');
 
 //storage
-Route::resource('storage','FileStorageController');
+Route::resource('stg','FileStorageController');

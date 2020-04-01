@@ -46,8 +46,8 @@
                                 File Storage
                               </a>
                                 <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="{{ url('/') }}/storage">View/Delete Files</a>
-                                    <a class="dropdown-item" href="{{ url('/') }}/storage/create">Upload File</a>
+                                  <a class="dropdown-item" href="{{ url('/') }}/stg">View/Delete Files</a>
+                                    <a class="dropdown-item" href="{{ url('/') }}/stg/create">Upload File</a>
                                     
                                 </div>
                             
