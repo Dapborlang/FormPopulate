@@ -36,22 +36,26 @@
                     @auth
                     @foreach(Auth::user()->role as $item)
                         @if($item->role == 'ADM')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/') }}/formpopulate/create">Create Form</a>
-                            </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Form
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ url('/') }}/formpopulate/create">Create</a>
+                                <a class="dropdown-item" href="{{ url('/') }}/formpopulate">View/Edit</a>  
+                            </div>
+                        </li>
                         @endif
                         @if($item->role == 'STG')
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                 File Storage
-                              </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="{{ url('/') }}/stg">View/Delete Files</a>
-                                    <a class="dropdown-item" href="{{ url('/') }}/stg/create">Upload File</a>
-                                    
-                                </div>
-                            
-                            </li>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ url('/') }}/stg">View/Delete Files</a>
+                                <a class="dropdown-item" href="{{ url('/') }}/stg/create">Upload File</a>  
+                            </div>
+                        </li>
                         @endif
                         @foreach($item->link as $item1)
                             

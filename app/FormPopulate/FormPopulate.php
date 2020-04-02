@@ -10,4 +10,9 @@ class FormPopulate extends Model
     {
        return $this->hasOne('App\FormPopulateIndex');
     }
+
+    public function Role()
+    {
+       return $this->belongsTo('App\Role','role','role');
+    }
 }

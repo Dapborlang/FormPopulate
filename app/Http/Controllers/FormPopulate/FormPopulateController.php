@@ -17,7 +17,8 @@ class FormPopulateController extends Controller
 
     public function index()
     {
-        //
+        $forms=FormPopulate::orderBy('id')->get();
+        return view('formpopulate.index',compact('forms'));
     }
 
 
@@ -53,7 +54,8 @@ class FormPopulateController extends Controller
 
     public function edit(FormPopulate $formPopulate)
     {
-        //
+        $role=RoleName::all();
+        return view('formpopulate.edit',compact('role'));
     }
 
 
