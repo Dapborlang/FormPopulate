@@ -8,13 +8,13 @@
 		<div class="card-header bg-info">Form Populate Master</div>
 		<div class="card-body">	
 			<div class="row">
-																						<div class="col-sm-6">
+				<div class="col-sm-6">
 					<div class="form-group">
-		                <label for="header">Header</label>
-		                		                <input type="text" class="form-control " id="header" name="header">
-		                					</div>
+		        <label for="header">Header</label>
+		          <input type="text" class="form-control " id="header" name="header">
+		      </div>
 				</div>
-																			<div class="col-sm-6">
+		  <div class="col-sm-6">
 					<div class="form-group">
 		                <label for="table_name">Table Name</label>
 		                		                <input type="text" class="form-control " id="table_name" name="table_name">
