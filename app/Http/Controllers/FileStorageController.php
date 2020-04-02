@@ -46,12 +46,18 @@ class FileStorageController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'filename' => 'required|unique:file_storages'
+        ]);
+
         if($request->hasFile('filedata'))
         {
             $extension = $request->file('filedata')->extension();
-            $uri=Storage::putFileAs('public',$request->file('filedata'),$request->fname.'.'.$extension);
+            $fileTosave=$request->filename.'.'.$extension;
+            Storage::putFileAs('public',$request->file('filedata'),$fileTosave);
+            $uri = Storage::url($fileTosave);
             $files=new FileStorage;
-            $files->filename = $request->fname;
+            $files->filename = $request->filename;
             $files->detail = $request->detail;
             $files->uri = $uri;
             $files->user_id=Auth::user()->id;

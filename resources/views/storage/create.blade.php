@@ -21,8 +21,8 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="form-group">
-		                <label for="fname">File Name</label>		                
-		                <input type="text" class="form-control" id="fname" name="fname">
+		                <label for="filename">File Name</label>		                
+		                <input type="text" class="form-control" id="filename" name="filename">
 					</div>
                     <div class="form-group">
 		                <label for="detail">File Detail</label>		                
@@ -32,7 +32,7 @@
                 <div class="col-sm-6">
 					<div class="form-group">
 		                <label for="file">File</label>		                
-		                <input type="file" class="form-control" id="filedata" name="filedata">
+		                <input type="file" class="form-control-file border" id="filedata" name="filedata">
 					</div>
                 </div>
 			</div>
