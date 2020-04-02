@@ -52,16 +52,24 @@ class FormPopulateController extends Controller
     }
 
 
-    public function edit(FormPopulate $formPopulate)
+    public function edit($id)
     {
         $role=RoleName::all();
-        return view('formpopulate.edit',compact('role'));
+        $form=FormPopulate::findOrFail($id);
+        return view('formpopulate.edit',compact('role','form'));
     }
 
 
-    public function update(Request $request, FormPopulate $formPopulate)
+    public function update(Request $request, $id)
     {
-        //
+        $formPopulate=FormPopulate::findOrFail($id);
+        $formPopulate->table_name    =   $request->table_name;
+        $formPopulate->model        =   $request->model;
+        $formPopulate->route        =   $request->route;
+        $formPopulate->header       =   $request->header;
+        $formPopulate->role         =   $request->role;
+        $formPopulate->save();
+        return redirect()->back();
     }
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\FormPopulateIndex;
 use Illuminate\Http\Request;
+use App\FormPopulate;
 
 class FormPopulateIndexController extends Controller
 {
@@ -23,22 +24,12 @@ class FormPopulateIndexController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $excluded=json_encode(explode(',', $request->exclude));
@@ -59,46 +50,31 @@ class FormPopulateIndexController extends Controller
         return redirect()->back()->with('message', 'Form Added');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\FormPopulateIndex  $formPopulateIndex
-     * @return \Illuminate\Http\Response
-     */
-    public function show(FormPopulateIndex $formPopulateIndex)
+    public function show($id)
     {
-        //
+        $form=FormPopulate::findOrFail($id);
+        return view('formpopulate.detail',compact('form'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\FormPopulateIndex  $formPopulateIndex
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(FormPopulateIndex $formPopulateIndex)
+    public function edit($id)
     {
-        //
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\FormPopulateIndex  $formPopulateIndex
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, FormPopulateIndex $formPopulateIndex)
+     public function update(Request $request,  $id)
     {
-        //
+        $formPopulate=FormPopulateIndex::findOrFail($id);
+        $formPopulate->exclude          =   $request->exclude;
+        $formPopulate->notes            =   $request->notes;
+        $formPopulate->script           =   $request->script;
+        $formPopulate->master_keys      =   $request->master_keys;
+        $formPopulate->foreign_keys     =   $request->foreign_keys;
+        $formPopulate->attribute        =   $request->attribute;
+        $formPopulate->cnotes           =   $request->cnotes;
+        $formPopulate->save();
+        return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\FormPopulateIndex  $formPopulateIndex
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(FormPopulateIndex $formPopulateIndex)
     {
         //

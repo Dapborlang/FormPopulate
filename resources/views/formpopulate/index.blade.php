@@ -49,7 +49,7 @@
                         </td>
                         <td>
                             <a class="btn btn-primary btn-sm" href="{{url('/')}}/formpopulate/{{$item->id}}/edit">Edit Master</a> | 
-                            <a class="btn btn-info btn-sm" href="{{url('/')}}/formpopulate/{{$item->id}}/edit">View Detail</a>
+                            <a class="btn btn-info btn-sm" href="{{url('/')}}/formpopulateindex/{{$item->id}}">View Detail</a>
                         </td>
                     </tr>
                 @endforeach
