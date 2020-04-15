@@ -13,7 +13,7 @@ class PageController extends Controller
         $this->middleware('formAuth:ADM');
     }
 
-     
+
     public function index()
     {
         //
@@ -29,9 +29,11 @@ class PageController extends Controller
         //
     }
 
-    public function show(Page $page)
+    public function show($page)
     {
-        //
+        $uri=Page::where('uri',$page)
+        ->get();
+        return view('page.view',compact('uri'));
     }
 
     public function edit(Page $page)

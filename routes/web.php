@@ -23,3 +23,6 @@ Route::put('frmbuilder/update/{id}/{cid}','FormBuilderController@update');
 
 //storage
 Route::resource('stg','FileStorageController');
+
+//..................Pages
+Route::get('{id}/pages','PageController@show');
