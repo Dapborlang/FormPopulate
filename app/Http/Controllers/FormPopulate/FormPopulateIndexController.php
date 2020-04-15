@@ -18,7 +18,7 @@ class FormPopulateIndexController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         //
@@ -43,7 +43,8 @@ class FormPopulateIndexController extends Controller
         $formPopulate->script           =   $request->script;
         $formPopulate->master_keys      =   $request->master_keys;
         $formPopulate->foreign_keys     =   $request->foreign_keys;
-        $formPopulate->attribute           =   $request->attribute;
+        $formPopulate->attribute        =   $request->attribute;
+        $formPopulate->type             =   $request->type;
         $formPopulate->cnotes           =   $cnotes;
         $formPopulate->save();
 
@@ -58,7 +59,7 @@ class FormPopulateIndexController extends Controller
 
     public function edit($id)
     {
-        
+
     }
 
      public function update(Request $request,  $id)

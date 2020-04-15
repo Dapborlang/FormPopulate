@@ -31,7 +31,7 @@ $(document).ready(function(){
 	        }
 	    });
 	    return jSON;
-  	}      
+  	}
 });
 </script>
 @endsection
@@ -47,7 +47,7 @@ $(document).ready(function(){
 	{{ method_field('PUT') }}
 	<div class="card bg-secondary text-white">
 		<div class="card-header bg-info">{{$model->header}}</div>
-		<div class="card-body">	
+		<div class="card-body">
 			<div class="row">
 			@foreach($columns as $item)
 				@if($item!='id' && $item!='created_at' && $item!='updated_at')
@@ -61,7 +61,7 @@ $(document).ready(function(){
 		                <select type="text" class="form-control" id="{{$master[$item][2]}}">
 		                	<option value="">--Select {{ucwords(str_replace('_',' ',$master[$item][2]))}}--</option>
 		                	@foreach($master[$item][0] as $data)
-		                	@php 
+		                	@php
 		                		$val=$master[$item][1];
 		                		$det=$master[$item][2];
 		                	@endphp
@@ -85,13 +85,15 @@ $(document).ready(function(){
 		                @if(array_key_exists($item, $select))
 		                <select type="text" class="form-control" id="{{$item}}" name="{{$item}}">
 		                	@foreach($select[$item][0] as $data)
-		                	@php 
+		                	@php
 		                		$val=$select[$item][1];
 		                		$det=$select[$item][2];
 		                	@endphp
 		                		<option value="{{$data->$val}}">{{$data->$det}}</option>
 		                	@endforeach
-		                </select>
+                        </select>
+                        @elseif(array_key_exists($item, $inputType))
+                        <textarea class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif" id="{{$item}}" name="{{$item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif>{{$content-> $item}}</textarea>
 		                @else
 		                <input type="text" class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif" id="{{$item}}" name="{{$item}}" value="{{$content-> $item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif>
 		                @endif

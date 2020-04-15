@@ -14,7 +14,7 @@ class FormBuilderController extends Controller
         $this->middleware('auth');
         $this->middleware('formAuth:'.$role->role);
     }
-    
+
     public function index($id,Request $request)
     {
         $dataString=$request->search;
@@ -33,7 +33,7 @@ class FormBuilderController extends Controller
                 }
             }
         }
-        
+
         $exclude=json_decode($model->index->exclude);
         $columns = \DB::connection()->getSchemaBuilder()->getColumnListing($model->table_name);
         foreach($columns as $data)
@@ -49,9 +49,9 @@ class FormBuilderController extends Controller
             }
         }
 
-        return view('formview.index', compact('columns','model','exclude','table','select')); 
+        return view('formview.index', compact('columns','model','exclude','table','select'));
     }
-    
+
     public function create($id)
     {
         $model=FormPopulate::findOrFail($id);
@@ -59,8 +59,10 @@ class FormBuilderController extends Controller
         $foreign=json_decode($model->index->foreign_keys, true);
         $class=json_decode($model->index->class, true);
         $attribute=json_decode($model->index->attribute, true);
+        $type=json_decode($model->index->type, true);
         $scriptKey=json_decode($model->index->script, true);
         $select=array();
+        $inputType=array();
         $master=array();
         $key=array();
         $notes=json_decode($model->index->cnotes, true);
@@ -72,7 +74,7 @@ class FormBuilderController extends Controller
                 $master[$masterKey[$item][2]]=array($data,$masterKey[$item][0],$masterKey[$item][1],$masterKey[$item][3]);
             }
         }
-        
+
         if(sizeof((array)$foreign)>0)
         {
             foreach (array_keys($foreign) as $key) {
@@ -82,12 +84,19 @@ class FormBuilderController extends Controller
             }
         }
 
+        if(sizeof((array)$type)>0)
+        {
+            foreach (array_keys($type) as $key) {
+                $inputType[$key]=$type[$key];
+            }
+        }
+
         $columns = \DB::connection()->getSchemaBuilder()->getColumnListing($model->table_name);
 
-        return view('formview.create', compact('columns','model','select','master','scriptKey','class','attribute','notes')); 
+        return view('formview.create', compact('columns','model','select','master','scriptKey','class','attribute','notes','inputType'));
     }
 
-    
+
     public function store(Request $request, $id)
     {
         $model=FormPopulate::findOrFail($id);
@@ -96,13 +105,13 @@ class FormBuilderController extends Controller
         return redirect()->back()->with('message', 'Added Successfully');
     }
 
-    
+
     public function show($id,$cid)
     {
-        
+
     }
 
-    
+
     public function edit($id,$cid)
     {
         $model=FormPopulate::findOrFail($id);
@@ -110,8 +119,10 @@ class FormBuilderController extends Controller
         $foreign=json_decode($model->index->foreign_keys, true);
         $class=json_decode($model->index->class, true);
         $attribute=json_decode($model->index->attribute, true);
+        $type=json_decode($model->index->type, true);
         $scriptKey=json_decode($model->index->script, true);
         $select=array();
+        $inputType=array();
         $master=array();
         $key=array();
 
@@ -123,7 +134,7 @@ class FormBuilderController extends Controller
                 $master[$masterKey[$item][2]]=array($data,$masterKey[$item][0],$masterKey[$item][1],$masterKey[$item][3]);
             }
         }
-        
+
         if(sizeof((array)$foreign)>0)
         {
             foreach (array_keys($foreign) as $key) {
@@ -133,14 +144,21 @@ class FormBuilderController extends Controller
             }
         }
 
+        if(sizeof((array)$type)>0)
+        {
+            foreach (array_keys($type) as $key) {
+                $inputType[$key]=$type[$key];
+            }
+        }
+
         $columns = \DB::connection()->getSchemaBuilder()->getColumnListing($model->table_name);
 
         $values='App\\'.$model->model;
         $content=$values::findOrFail($cid);
-        return view('formview.edit', compact('columns','model','select','master','scriptKey','class','content','attribute'));
+        return view('formview.edit', compact('columns','model','select','master','scriptKey','class','content','attribute','inputType'));
     }
 
-    
+
     public function update(Request $request, $id,$cid)
     {
 
@@ -153,13 +171,13 @@ class FormBuilderController extends Controller
             {
                 $data-> $key = $value;
             }
-            
+
         }
         $data->save();
         return redirect()->back()->with('message', 'Updated Successfully');
     }
 
-    
+
     public function destroy($id)
     {
         //

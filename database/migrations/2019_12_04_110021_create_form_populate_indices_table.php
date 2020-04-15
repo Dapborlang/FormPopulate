@@ -14,7 +14,7 @@ class CreateFormPopulateIndicesTable extends Migration
     public function up()
     {
         Schema::create('form_populate_indices', function (Blueprint $table) {
-            $table->bigIncrements('id'); 
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('form_populate_id');
             $table->json("exclude")->nullable();
             $table->json("notes")->nullable();
@@ -23,6 +23,7 @@ class CreateFormPopulateIndicesTable extends Migration
             $table->json("foreign_keys")->nullable();
             $table->json("class")->nullable();
             $table->json("attribute")->nullable();
+            $table->json("type")->nullable();
             $table->json("cnotes")->nullable();
             $table->foreign('form_populate_id')->references('id')->on('form_populates');
             $table->timestamps();
