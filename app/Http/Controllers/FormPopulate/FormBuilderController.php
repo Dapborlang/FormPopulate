@@ -161,7 +161,6 @@ class FormBuilderController extends Controller
 
     public function update(Request $request, $id,$cid)
     {
-
         $model=FormPopulate::findOrFail($id);
         $values='App\\'.$model->model;
         $data=$values::findOrFail($cid);
@@ -171,7 +170,6 @@ class FormBuilderController extends Controller
             {
                 $data-> $key = $value;
             }
-
         }
         $data->save();
         return redirect()->back()->with('message', 'Updated Successfully');

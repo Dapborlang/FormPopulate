@@ -84,6 +84,10 @@ $(document).ready(function(){
 		                <label for="{{$item}}">{{$title}}</label>
 		                @if(array_key_exists($item, $select))
 		                <select type="text" class="form-control" id="{{$item}}" name="{{$item}}">
+							@php
+		                		$current=$content-> $item;
+		                	@endphp
+							<option value="{{$current}}">{{$current}}</option>
 		                	@foreach($select[$item][0] as $data)
 		                	@php
 		                		$val=$select[$item][1];
