@@ -57,14 +57,14 @@ $(document).ready(function(){
 				<div class="col-sm-6" id="{{$item}}1">
 					<div class="form-group">
 		                <label for="{{$master[$item][2]}}">{{ucwords(str_replace('_',' ',$master[$item][2]))}}</label>
-		                <select type="text" class="form-control" id="{{$master[$item][2]}}">
+		                <select type="text" class="form-control fstdropdown-select" id="{{$master[$item][2]}}">
 		                	<option value="">--Select {{ucwords(str_replace('_',' ',$master[$item][2]))}}--</option>
 		                	@foreach($master[$item][0] as $data)
 		                	@php
 		                		$val=$master[$item][1];
 		                		$det=$master[$item][2];
 		                	@endphp
-		                		<option value="{{$data->$val}}">{{$data->$det}}</option>
+		                		<option value="{{$data->$val}}" style="color:black">{{$data->$det}}</option>
 		                	@endforeach
 		                </select>
 		            </div>
@@ -72,7 +72,7 @@ $(document).ready(function(){
 		        <div class="col-sm-6" id="{{$item}}2">
 					<div class="form-group">
 		                <label for="{{$item}}">{{$master[$item][3]}}</label>
-		                <select type="text" class="form-control" id="{{$item}}" name="{{$item}}">
+		                <select type="text" class="form-control fstdropdown-select" id="{{$item}}" name="{{$item}}">
 		                	<option value="">--Select {{$title}}--</option>
 		                </select>
 		            </div>
@@ -82,7 +82,7 @@ $(document).ready(function(){
 					<div class="form-group">
 		                <label for="{{$item}}">{{$title}}</label>
 		                @if(array_key_exists($item, $select))
-		                <select class="form-control" id="{{$item}}" name="{{$item}}">
+		                <select class="form-control fstdropdown-select" id="{{$item}}" name="{{$item}}">
 						<option value="">--Select {{$title}}--</option>
 		                	@foreach($select[$item][0] as $data)
 		                	@php
