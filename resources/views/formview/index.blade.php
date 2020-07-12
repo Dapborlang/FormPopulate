@@ -34,6 +34,7 @@
 						@if(array_key_exists($item, $select))
 							@php 
 		                		$val=$select[$item][0];
+								$val=array_values(array_slice((explode('\\',$val)), -1))[0];;
 		                		$det=$select[$item][1];
 		                	@endphp		
 							<td>{{ $item1-> $val-> $det }}</td>
