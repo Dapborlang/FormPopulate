@@ -1,5 +1,8 @@
+<!--Formbuilder created by RDMarwein -->
 @extends('layouts.app')
 @section('script')
+<link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+<script src="{{ asset('js/select2.full.min.js') }}"></script>
 <script>
 $(document).ready(function(){
 	@if(sizeof((array)$scriptKey)>0)
@@ -8,6 +11,7 @@ $(document).ready(function(){
 			var id=this.value;
 			var data=getUrlData("{{$item[1]}}/"+id);
 			var html="";
+			html+='<option value="">--Select Value--</option>';
 			for(i=0;i<data.length;i++)
 	        {
 	            html+='<option value="'+data[i].{{$item[3]}}+'">'+data[i].{{$item[4]}}+'</option>';
@@ -32,6 +36,10 @@ $(document).ready(function(){
 	    });
 	    return jSON;
   	}
+	
+	$(function () {
+		$("select").select2();
+	});
 });
 </script>
 @endsection
@@ -55,7 +63,7 @@ $(document).ready(function(){
 				    $title=ucwords(str_replace('_',' ',$item));
 				@endphp
 				@if(array_key_exists($item, $master))
-				<div class="col-sm-6" id="{{$item}}1">
+				<div class="col-sm-6 col-xl-4" id="{{$item}}1">
 					<div class="form-group">
 		                <label for="{{$master[$item][2]}}">{{ucwords(str_replace('_',' ',$master[$item][2]))}}</label>
 		                <select type="text" class="form-control" id="{{$master[$item][2]}}">
@@ -70,7 +78,7 @@ $(document).ready(function(){
 		                </select>
 		            </div>
 		        </div>
-		        <div class="col-sm-6" id="{{$item}}2">
+		        <div class="col-sm-6 col-xl-4" id="{{$item}}2">
 					<div class="form-group">
 		                <label for="{{$item}}">{{$master[$item][3]}}</label>
 		                <select type="text" class="form-control" id="{{$item}}" name="{{$item}}">
@@ -79,7 +87,7 @@ $(document).ready(function(){
 		            </div>
 		        </div>
 				@else
-				<div class="col-sm-6" id="{{$item}}1">
+				<div class="col-sm-6 col-xl-4" id="{{$item}}1">
 					<div class="form-group">
 		                <label for="{{$item}}">{{$title}}</label>
 		                @if(array_key_exists($item, $select))
@@ -87,19 +95,19 @@ $(document).ready(function(){
 							@php
 		                		$current=$content-> $item;
 		                	@endphp
-							<option value="{{$current}}">{{$current}}</option>
+							<option value="{{$current}}">({{$current}}) NO CHANGES</option>
 		                	@foreach($select[$item][0] as $data)
 		                	@php
 		                		$val=$select[$item][1];
 		                		$det=$select[$item][2];
 		                	@endphp
-		                		<option value="{{$data->$val}}">{{$data->$det}}</option>
+		                		<option value="{{$data->$val}}">({{$data->$val}}) {{$data->$det}}</option>
 		                	@endforeach
                         </select>
                         @elseif(array_key_exists($item, $inputType))
                         <textarea class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif" id="{{$item}}" name="{{$item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif>{{$content-> $item}}</textarea>
 		                @else
-		                <input type="text" class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif" id="{{$item}}" name="{{$item}}" value="{{$content-> $item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif>
+		                <input type="text" class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif form-control-sm" id="{{$item}}" name="{{$item}}" value="{{$content-> $item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif>
 		                @endif
 					</div>
 				</div>

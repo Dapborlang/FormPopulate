@@ -1,6 +1,5 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/fstdropdown.css": "/css/fstdropdown.css",
-    "/js/fstdropdown.js": "/js/fstdropdown.js"
+    "/js/common.js": "/js/common.js"
 }

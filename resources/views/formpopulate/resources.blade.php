@@ -1,3 +1,4 @@
+<!-- created by RDMarwein -->
 @extends('layouts.app')
 @section('script')
 @endsection
@@ -54,6 +55,10 @@
                     <div class="form-group">
 		                <label for="type">Type</label>
 		                <textarea class="form-control " id="type" name="type"></textarea>
+                    </div>
+					<div class="form-group">
+		                <label for="class">Class</label>
+		                <textarea class="form-control " id="class" name="class"></textarea>
                     </div>
                     <div class="form-group">
 		                <label for="master_keys">Master Keys</label>

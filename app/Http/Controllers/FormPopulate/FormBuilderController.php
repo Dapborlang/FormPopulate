@@ -1,5 +1,7 @@
 <?php
-
+/*
+    Created by RDMarwein
+*/
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -28,7 +30,7 @@ class FormBuilderController extends Controller
                 foreach (array_keys($foreign) as $key) {
                     $param=$foreign[$key][2];
                     $table=$table->orWhereHas($key, function ($query) use($param,$dataString) {
-                        $query->where($param,'like','%'.$dataString.'%');
+                        $query->where($param,'ilike','%'.$dataString.'%');
                     });
                 }
             }
@@ -38,7 +40,7 @@ class FormBuilderController extends Controller
         $columns = \DB::connection()->getSchemaBuilder()->getColumnListing($model->table_name);
         foreach($columns as $data)
         {
-            $table=$table->orWhere($data,'like','%'.$dataString.'%');
+            $table=$table->orWhere($data,'ilike','%'.$dataString.'%');
         }
         $table=$table->limit(50)->get();
         $select=array();

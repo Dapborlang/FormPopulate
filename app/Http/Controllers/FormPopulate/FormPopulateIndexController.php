@@ -1,5 +1,7 @@
 <?php
-
+/*
+    Created by RDMarwein
+*/
 namespace App\Http\Controllers;
 
 use App\FormPopulateIndex;
@@ -41,6 +43,7 @@ class FormPopulateIndexController extends Controller
         $formPopulate->exclude          =   $excluded;
         $formPopulate->notes            =   $notes;
         $formPopulate->script           =   $request->script;
+        $formPopulate->class            =   $request->class;
         $formPopulate->master_keys      =   $request->master_keys;
         $formPopulate->foreign_keys     =   $request->foreign_keys;
         $formPopulate->attribute        =   $request->attribute;
@@ -68,6 +71,7 @@ class FormPopulateIndexController extends Controller
         $formPopulate->exclude          =   $request->exclude;
         $formPopulate->notes            =   $request->notes;
         $formPopulate->script           =   $request->script;
+        $formPopulate->class            =   $request->class;
         $formPopulate->master_keys      =   $request->master_keys;
         $formPopulate->foreign_keys     =   $request->foreign_keys;
         $formPopulate->attribute        =   $request->attribute;
