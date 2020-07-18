@@ -36,28 +36,6 @@ $(document).ready(function(){
 	    });
 	    return jSON;
 	}
-	  
-	// $("select").on({    
-    // "change": function() {
-    //         $(this).blur();
-
-    //     },
-
-    //     'focus': function() {
-	// 		var id = this.id+"5";
-	// 		$("#"+id).attr("type","text");
-    //         console.log(id);
-    //     },
-
-    //     "blur": function() {
-    //         console.log("not displayed");
-    //     },
-
-    //    "keyup": function(e) {
-    //         if (e.keyCode == 27)
-    //             console.log("displayed");
-    //     }
-	// });
 	
 	$(function () {
 		$("select").select2();
