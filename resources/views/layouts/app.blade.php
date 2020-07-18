@@ -18,7 +18,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/fstdropdown.css') }}">
 </head>
 <body>
     <div id="app">
@@ -114,6 +113,5 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('js/fstdropdown.js') }}"></script>
 </body>
 </html>
