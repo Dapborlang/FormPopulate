@@ -28,7 +28,7 @@
 					<div class="col-sm-6">
 						<div class="form-group">
 			                <label for="exclude">Exclude</label>
-			                <input type="text" class="form-control " id="exclude" name="exclude">
+			                <input type="text" class="form-control " id="exclude" name="exclude" placeholder='column to exclude eg id,updated_at,created_at'>
 						</div>
 					</div>
 					<div class="col-sm-6">
@@ -50,7 +50,7 @@
 				<div class="col-sm-6">
 					<div class="form-group">
 		                <label for="script">Script</label>
-		                <textarea rows="4" class="form-control " id="script" name="script"></textarea>
+		                <textarea rows="4" class="form-control " id="script" name="script" placeholder='[["master_id","/api/uri_to_fetch","slave_id","column_value","Label"]]'></textarea>
                     </div>
                     <div class="form-group">
 		                <label for="type">Type</label>
@@ -62,13 +62,20 @@
                     </div>
                     <div class="form-group">
 		                <label for="master_keys">Master Keys</label>
-		                <textarea class="form-control " id="master_keys" name="master_keys"></textarea>
+		                <textarea class="form-control " id="master_keys" name="master_keys" placeholder='{"Master_Model":["master_id","master_column_to_display","slave_column_name","Slave_Model"]}'></textarea>
 		            </div>
 				</div>
 				<div class="col-sm-6">
 					<div class="form-group">
 		                <label for="foreign_keys">Foreign Keys</label>
-		                <textarea class="form-control " id="foreign_keys" name="foreign_keys"></textarea>
+		                <textarea class="form-control " id="foreign_keys" name="foreign_keys" 
+						placeholder='{
+	"Model_to_fetch": [
+		"foreign_key",
+		"master_primary_id",
+		"master_description_column"
+	]
+}'></textarea>
 		            </div>
 		            <div class="form-group">
 		                <label for="attribute">Attributes</label>
