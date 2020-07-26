@@ -36,6 +36,28 @@ $(document).ready(function(){
 	    });
 	    return jSON;
 	}
+	  
+	// $("select").on({    
+    // "change": function() {
+    //         $(this).blur();
+
+    //     },
+
+    //     'focus': function() {
+	// 		var id = this.id+"5";
+	// 		$("#"+id).attr("type","text");
+    //         console.log(id);
+    //     },
+
+    //     "blur": function() {
+    //         console.log("not displayed");
+    //     },
+
+    //    "keyup": function(e) {
+    //         if (e.keyCode == 27)
+    //             console.log("displayed");
+    //     }
+	// });
 	
 	$(function () {
 		$("select").select2();
@@ -102,8 +124,12 @@ $(document).ready(function(){
 		                	@endforeach
 		                </select>
                         @elseif(array_key_exists($item, $inputType))
-                        <textarea class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif" id="{{$item}}" name="{{$item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif></textarea>
-                        @else
+							@if($inputType[$item]=='textarea')
+                        		<textarea class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif" id="{{$item}}" name="{{$item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif></textarea>
+							@else
+								<input type="{{$inputType[$item]}}" class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif form-control-sm" id="{{$item}}" name="{{$item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif>
+							@endif
+						@else
 		                <input type="text" class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif form-control-sm" id="{{$item}}" name="{{$item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif>
 		                @endif
 					</div>
