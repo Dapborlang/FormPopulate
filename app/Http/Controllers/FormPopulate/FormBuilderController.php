@@ -30,7 +30,7 @@ class FormBuilderController extends Controller
                 foreach (array_keys($foreign) as $key) {
                     $param=$foreign[$key][2];
                     $table=$table->orWhereHas($key, function ($query) use($param,$dataString) {
-                        $query->where($param,'ilike','%'.$dataString.'%');
+                        $query->where($param,'like','%'.$dataString.'%');
                     });
                 }
             }
@@ -40,7 +40,7 @@ class FormBuilderController extends Controller
         $columns = \DB::connection()->getSchemaBuilder()->getColumnListing($model->table_name);
         foreach($columns as $data)
         {
-            $table=$table->orWhere($data,'ilike','%'.$dataString.'%');
+            $table=$table->orWhere($data,'like','%'.$dataString.'%');
         }
         $table=$table->limit(50)->get();
         $select=array();
@@ -178,8 +178,16 @@ class FormBuilderController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($id,$cid)
     {
-        //
+        try {
+            $model=FormPopulate::findOrFail($id);
+            $values='App\\'.$model->model;
+            $data=$values::findOrFail($cid);
+            $data->delete();
+            return redirect()->back()->with('message', 'Deleted Successfully');        
+         } catch ( \Exception $e) {
+            return redirect()->back()->with('fail-message', 'Cannot delete or update a parent row: a foreign key constraint fails');      
+         }
     }
 }
