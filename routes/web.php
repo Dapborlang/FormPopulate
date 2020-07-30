@@ -20,6 +20,7 @@ Route::post('formbuilder/{id}/index','FormBuilderController@index');
 Route::get('frmbuilder/{id}/{cid}','FormBuilderController@show');
 Route::get('frmbuilder/edit/{id}/{cid}','FormBuilderController@edit');
 Route::put('frmbuilder/update/{id}/{cid}','FormBuilderController@update');
+Route::delete('frmbuilder/delete/{id}/{cid}','FormBuilderController@destroy');
 
 //storage
 Route::resource('stg','FileStorageController');

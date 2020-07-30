@@ -52,7 +52,7 @@ $(document).ready(function(){
 	        {{ session()->get('message') }}
 	    </div>
 	@endif
-	<form id="partybillForm" method="POST" action="{{ url('/') }}/{{$model->route}}/{{$model->id}}" target="">
+	<form id="partybillForm" method="POST" action="{{ url('/') }}/formbuilder/{{$model->id}}" target="">
 	{{ csrf_field() }}
 	<div class="card bg-secondary text-white">
 		<div class="card-header bg-info">{{$model->header}}</div>

@@ -19,30 +19,48 @@ class FormBuilderController extends Controller
 
     public function index($id,Request $request)
     {
+        if(isset($_GET['page']))
+        {
+            $page=($_GET['page']-1)*50;
+        }
+        else
+        {
+            $page=0;
+        }
+        $count=1;
         $dataString=$request->search;
         $model=FormPopulate::findOrFail($id);
         $values='App\\'.$model->model;
         $foreign=json_decode($model->index->foreign_keys, true);
         $table=$values::orderBy('id', 'desc');
-        if ($request->isMethod('post')) {
-            if(sizeof((array)$foreign)>0)
-            {
-                foreach (array_keys($foreign) as $key) {
-                    $param=$foreign[$key][2];
-                    $table=$table->orWhereHas($key, function ($query) use($param,$dataString) {
-                        $query->where($param,'like','%'.$dataString.'%');
-                    });
-                }
-            }
-        }
+        
 
         $exclude=json_decode($model->index->exclude);
         $columns = \DB::connection()->getSchemaBuilder()->getColumnListing($model->table_name);
         foreach($columns as $data)
         {
-            $table=$table->orWhere($data,'like','%'.$dataString.'%');
+            $table=$table->orWhere($data,'ilike','%'.$dataString.'%');
         }
-        $table=$table->limit(50)->get();
+
+        if ($request->isMethod('post')) {
+            if(sizeof((array)$foreign)>0)
+            {
+                foreach (array_keys($foreign) as $key) {
+                    $param=$foreign[$key][2];
+                    $key=array_values(array_slice((explode('\\',$key)), -1))[0];
+                    $table=$table->orWhereHas($key, function ($query) use($param,$dataString) {
+                        $query->where($param,'ilike','%'.$dataString.'%');
+                    });
+                }
+            }
+            $table=$table->get();
+        }
+        else
+        {
+            $count=$table->count()/50;
+            $table=$table->offset($page)->limit(50)->get();
+        }
+        
         $select=array();
         if(sizeof((array)$foreign)>0)
         {
@@ -50,8 +68,7 @@ class FormBuilderController extends Controller
                 $select[$foreign[$key][0]]=array($key,$foreign[$key][2]);
             }
         }
-
-        return view('formview.index', compact('columns','model','exclude','table','select'));
+        return view($model->route.'.index', compact('columns','model','exclude','table','select','count'));
     }
 
     public function create($id)
@@ -95,7 +112,7 @@ class FormBuilderController extends Controller
 
         $columns = \DB::connection()->getSchemaBuilder()->getColumnListing($model->table_name);
 
-        return view('formview.create', compact('columns','model','select','master','scriptKey','class','attribute','notes','inputType'));
+        return view($model->route.'.create', compact('columns','model','select','master','scriptKey','class','attribute','notes','inputType'));
     }
 
 
@@ -157,7 +174,7 @@ class FormBuilderController extends Controller
 
         $values='App\\'.$model->model;
         $content=$values::findOrFail($cid);
-        return view('formview.edit', compact('columns','model','select','master','scriptKey','class','content','attribute','inputType'));
+        return view($model->route.'.edit', compact('columns','model','select','master','scriptKey','class','content','attribute','inputType'));
     }
 
 
