@@ -62,7 +62,7 @@
                     </div>
                     <div class="form-group">
 		                <label for="master_keys">Master Keys</label>
-		                <textarea class="form-control " id="master_keys" name="master_keys" placeholder='{"Master_Model":["master_id","master_column_to_display","slave_column_name","Slave_Model"]}'></textarea>
+		                <textarea class="form-control " id="master_keys" name="master_keys" placeholder='{"Master_Model":["master_id","master_column_to_display","foreign_key","foreign_column","ForeignModel"]}'></textarea>
 		            </div>
 				</div>
 				<div class="col-sm-6">

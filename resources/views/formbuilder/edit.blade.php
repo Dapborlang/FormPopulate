@@ -58,7 +58,7 @@ $(document).ready(function(){
 		<div class="card-body">
 			<div class="row">
 			@foreach($columns as $item)
-				@if($item!='id' && $item!='created_at' && $item!='updated_at')
+			@if(!in_array($item,$exclude) && $item!='id' && $item!='created_at' && $item!='updated_at')
 				@php
 				    $title=ucwords(str_replace('_',' ',$item));
 				@endphp

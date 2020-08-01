@@ -33,14 +33,16 @@ class FormBuilderController extends Controller
         $values='App\\'.$model->model;
         $foreign=json_decode($model->index->foreign_keys, true);
         $table=$values::orderBy('id', 'desc');
-        
-
+        $masterKey=json_decode($model->index->master_keys, true);
+        $master=array();
         $exclude=json_decode($model->index->exclude);
         $columns = \DB::connection()->getSchemaBuilder()->getColumnListing($model->table_name);
         foreach($columns as $data)
         {
             $table=$table->orWhere($data,'ilike','%'.$dataString.'%');
         }
+
+        
 
         if ($request->isMethod('post')) {
             if(sizeof((array)$foreign)>0)
@@ -62,13 +64,23 @@ class FormBuilderController extends Controller
         }
         
         $select=array();
+
+        if(sizeof((array)$masterKey)>0)
+        {
+            foreach (array_keys($masterKey) as $item) {
+                $values='App\\'.$item;
+                $data=$values::all();
+                $master[$masterKey[$item][2]]=array($masterKey[$item][4],$masterKey[$item][3]);
+            }
+        }
+
         if(sizeof((array)$foreign)>0)
         {
             foreach (array_keys($foreign) as $key) {
                 $select[$foreign[$key][0]]=array($key,$foreign[$key][2]);
             }
         }
-        return view($model->route.'.index', compact('columns','model','exclude','table','select','count'));
+        return view($model->route.'.index', compact('columns','model','exclude','table','select','master','count'));
     }
 
     public function create($id)
@@ -85,6 +97,7 @@ class FormBuilderController extends Controller
         $master=array();
         $key=array();
         $notes=json_decode($model->index->cnotes, true);
+        $exclude=json_decode($model->index->exclude);
         if(sizeof((array)$masterKey)>0)
         {
             foreach (array_keys($masterKey) as $item) {
@@ -112,7 +125,7 @@ class FormBuilderController extends Controller
 
         $columns = \DB::connection()->getSchemaBuilder()->getColumnListing($model->table_name);
 
-        return view($model->route.'.create', compact('columns','model','select','master','scriptKey','class','attribute','notes','inputType'));
+        return view($model->route.'.create', compact('columns','model','select','master','exclude','scriptKey','class','attribute','notes','inputType'));
     }
 
 
@@ -144,6 +157,7 @@ class FormBuilderController extends Controller
         $inputType=array();
         $master=array();
         $key=array();
+        $exclude=json_decode($model->index->exclude);
 
         if(sizeof((array)$masterKey)>0)
         {
@@ -174,7 +188,7 @@ class FormBuilderController extends Controller
 
         $values='App\\'.$model->model;
         $content=$values::findOrFail($cid);
-        return view($model->route.'.edit', compact('columns','model','select','master','scriptKey','class','content','attribute','inputType'));
+        return view($model->route.'.edit', compact('columns','model','select','master','scriptKey','exclude','class','content','attribute','inputType'));
     }
 
 

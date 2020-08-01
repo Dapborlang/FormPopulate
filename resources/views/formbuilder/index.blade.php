@@ -33,7 +33,11 @@
 					@php
 						$title=ucwords(str_replace('_',' ',$item));
 					@endphp
-						<th>{{$title}}</th>
+						@if(array_key_exists($item, $master))
+							<th>{{ucwords(str_replace('_',' ',$master[$item][1]))}}</th>
+						@else
+							<th>{{$title}}</th>
+						@endif
 					@endif
 				@endforeach
 					<th>Option</th>
@@ -48,8 +52,15 @@
 									$val=array_values(array_slice((explode('\\',$val)), -1))[0];;
 									$det=$select[$item][1];
 								@endphp		
-								<td>{{ $item1-> $val-> $det }}</td>
-							@else		
+								<td>@if(isset($item1-> $val-> $det)){{ $item1-> $val-> $det }}@endif</td>
+							@elseif(array_key_exists($item, $master))	
+								@php 
+									$val=$master[$item][0];
+									$val=array_values(array_slice((explode('\\',$val)), -1))[0];;
+									$det=$master[$item][1];
+								@endphp		
+								<td>@if(isset($item1-> $val-> $det)){{ $item1-> $val-> $det }}@endif</td>
+							@else	
 								<td>{{ $item1-> $item}}</td>	
 							@endif
 						@endif

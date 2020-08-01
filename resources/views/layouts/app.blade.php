@@ -65,8 +65,8 @@
                                     {{$item1->header}}
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ url('/') }}/{{$item1->route}}/{{$item1->id}}">View/Edit</a>
-                                        <a class="dropdown-item" href="{{ url('/') }}/{{$item1->route}}/{{$item1->id}}/create">Create</a>
+                                        <a class="dropdown-item" href="{{ url('/') }}/formbuilder/{{$item1->id}}">View/Edit</a>
+                                        <a class="dropdown-item" href="{{ url('/') }}/formbuilder/{{$item1->id}}/create">Create</a>
                                     </div>
                                 </li>
                         @endforeach

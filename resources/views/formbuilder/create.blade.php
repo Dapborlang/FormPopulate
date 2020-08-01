@@ -59,61 +59,61 @@ $(document).ready(function(){
 		<div class="card-body">
 			<div class="row">
 			@foreach($columns as $item)
-				@if($item!='id' && $item!='created_at' && $item!='updated_at')
-				@php
-				    $title=ucwords(str_replace('_',' ',$item));
-				@endphp
-				@if(array_key_exists($item, $master))
-				<div class="col-sm-6 col-xl-4" id="{{$item}}1">
-					<div class="form-group">
-		                <label for="{{$master[$item][2]}}">{{ucwords(str_replace('_',' ',$master[$item][2]))}}</label>
-		                <select type="text" class="form-control" id="{{$master[$item][2]}}">
-		                	<option value="">--Select {{ucwords(str_replace('_',' ',$master[$item][2]))}}--</option>
-		                	@foreach($master[$item][0] as $data)
-		                	@php
-		                		$val=$master[$item][1];
-		                		$det=$master[$item][2];
-		                	@endphp
-		                		<option value="{{$data->$val}}">{{$data->$det}}</option>
-		                	@endforeach
-		                </select>
-		            </div>
-		        </div>
-		        <div class="col-sm-6 col-xl-4" id="{{$item}}2">
-					<div class="form-group">
-		                <label for="{{$item}}">{{$master[$item][3]}}</label>
-		                <select type="text" class="form-control" id="{{$item}}" name="{{$item}}">
-		                	<option value="">--Select {{$title}}--</option>
-		                </select>
-		            </div>
-		        </div>
-				@else
-				<div class="col-sm-6 col-xl-4" id="{{$item}}1">
-					<div class="form-group">
-		                <label for="{{$item}}">{{$title}}</label>
-		                @if(array_key_exists($item, $select))
-		                <select class="form-control" id="{{$item}}" name="{{$item}}">
-						<option value="">--Select {{$title}}--</option>
-		                	@foreach($select[$item][0] as $data)
-		                	@php
-		                		$val=$select[$item][1];
-		                		$det=$select[$item][2];
-		                	@endphp
-		                		<option value="{{$data->$val}}">{{$data->$det}}</option>
-		                	@endforeach
-		                </select>
-                        @elseif(array_key_exists($item, $inputType))
-							@if($inputType[$item]=='textarea')
-                        		<textarea class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif" id="{{$item}}" name="{{$item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif></textarea>
-							@else
-								<input type="{{$inputType[$item]}}" class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif form-control-sm" id="{{$item}}" name="{{$item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif>
-							@endif
-						@else
-		                <input type="text" class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif form-control-sm" id="{{$item}}" name="{{$item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif>
-		                @endif
-					</div>
-				</div>
-				@endif
+				@if(!in_array($item,$exclude) && $item!='id' && $item!='created_at' && $item!='updated_at')
+					@php
+						$title=ucwords(str_replace('_',' ',$item));
+					@endphp
+					@if(array_key_exists($item, $master))
+						<div class="col-sm-6 col-xl-4" id="{{$item}}1">
+							<div class="form-group">
+								<label for="{{$master[$item][2]}}">{{ucwords(str_replace('_',' ',$master[$item][2]))}}</label>
+								<select type="text" class="form-control" id="{{$master[$item][2]}}">
+									<option value="">--Select {{ucwords(str_replace('_',' ',$master[$item][2]))}}--</option>
+									@foreach($master[$item][0] as $data)
+									@php
+										$val=$master[$item][1];
+										$det=$master[$item][2];
+									@endphp
+										<option value="{{$data->$val}}">{{$data->$det}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6 col-xl-4" id="{{$item}}2">
+							<div class="form-group">
+								<label for="{{$item}}">{{ucwords(str_replace('_',' ',$master[$item][3]))}}</label>
+								<select type="text" class="form-control" id="{{$item}}" name="{{$item}}">
+									<option value="">--Select {{$title}}--</option>
+								</select>
+							</div>
+						</div>
+					@else
+						<div class="col-sm-6 col-xl-4" id="{{$item}}1">
+							<div class="form-group">
+								<label for="{{$item}}">{{$title}}</label>
+								@if(array_key_exists($item, $select))
+								<select class="form-control" id="{{$item}}" name="{{$item}}">
+								<option value="">--Select {{$title}}--</option>
+									@foreach($select[$item][0] as $data)
+									@php
+										$val=$select[$item][1];
+										$det=$select[$item][2];
+									@endphp
+										<option value="{{$data->$val}}">{{$data->$det}}</option>
+									@endforeach
+								</select>
+								@elseif(array_key_exists($item, $inputType))
+									@if($inputType[$item]=='textarea')
+										<textarea class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif" id="{{$item}}" name="{{$item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif></textarea>
+									@else
+										<input type="{{$inputType[$item]}}" class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif form-control-sm" id="{{$item}}" name="{{$item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif>
+									@endif
+								@else
+								<input type="text" class="form-control @if(isset($class) && array_key_exists($item, $class)) {{$class[$item]}} @endif form-control-sm" id="{{$item}}" name="{{$item}}" @if(isset($attribute) && array_key_exists($item, $attribute)) {{$attribute[$item]}} @endif>
+								@endif
+							</div>
+						</div>
+					@endif
 				@endif
 			@endforeach
 			</div>
