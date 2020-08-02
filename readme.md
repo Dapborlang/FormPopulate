@@ -31,8 +31,10 @@ You will be redirect to another form for filling more details as shown below.
     <li>Remember to specify the guarded attribute on the model</li>
 </ul>
 <h4>Hurray! The CRUD operation for Bank is ready</h4>
+<img src="readme/bank.jpg" alt="bank">
 
 <h3>Creating Forms With Select Option</h3>
+<img src="readme/bankbranch.jpg" alt="bankbranch">
 <ul>
     <li>Create Model with migration that belongsTo the first Model and follow the same procedure in the Form\Create page</li>
     <li>To populate Select Option, fill the "Foreign Keys" field as shown in the placeholder.<br>
@@ -42,7 +44,7 @@ You will be redirect to another form for filling more details as shown below.
 		"master_primary_id",
 		"master_description_column"
 	]
-}</pre></li>   
+}</pre></li> 
 </ul>
 
 
