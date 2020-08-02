@@ -15,8 +15,10 @@ FormPopulate make use of getColumnListing(string $table) for listing column of a
     <li>Default User: admin@domain.com and Password: password</li>
 </ul>    
 <h3>Creating Forms</h3>
-<p>
-For creating forms, first you need create Model and migration.
-
-</p>
+<ul>
+    <li>First you need create Model and migration.</li>
+    <li>Goto Form and then Create.</li>
+    <li>Fill the required fields as shown belown</li>
+</ul>
+<img src="readme/FormPopulate1.jpg" alt="masterform">
 https://youtu.be/uK1WyB6rO1o
