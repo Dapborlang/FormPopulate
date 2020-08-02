@@ -21,4 +21,13 @@ FormPopulate make use of getColumnListing(string $table) for listing column of a
     <li>Fill the required fields as shown belown</li>
 </ul>
 <img src="readme/FormPopulate1.jpg" alt="masterform">
+<ul>
+    <li>In this case, fill Header="Bank", Table Name="banks", Model="Bank", Route="formbuilder" and Role="Admin" (You can add many user's Role) and Submit</li>
+</ul>
+You will be redirect to another form for filling more details as shown below.
+<img src="readme/FormPopulate2.jpg" alt="formdetails">
+<ul>
+    <li>In this case, select Form Populate Id="Bank", Exclude="id,updated_at,created_at", Attributes="{"bank":"require","code":"required"}" leave blank all other fields and press Submit</li>
+</ul>
+<h3>Hurray! The CRUD operation for Bank is ready</h3>
 https://youtu.be/uK1WyB6rO1o

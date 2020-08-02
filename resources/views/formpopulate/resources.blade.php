@@ -20,7 +20,7 @@
 			                <label for="form_populate_id">Form Populate Id</label>
 			                <select class="form-control " id="form_populate_id" name="form_populate_id">
 				                @foreach($formPopulate as $item)
-				                <option value="{{$item->id}}">{{$item->model}}</option>
+				                <option value="{{$item->id}}">{{$item->header}}</option>
 				                @endforeach
 				            </select>
 						</div>
