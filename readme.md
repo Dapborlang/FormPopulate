@@ -1,5 +1,5 @@
 <h2>FormPopulate</h2>
-With the help of FormPopulate you can create form in less than a minute. 
+With the help of FormPopulate you can create form in less than a minute. <br>
 FormPopulate will:
 <ul>
     <li>Autopopulate Form from database</li>
@@ -12,7 +12,8 @@ FormPopulate make use of getColumnListing(string $table) for listing column of a
 <ul>
     <li>Clone it from https://github.com/Dapborlang/FormPopulate.git and use composer update to finish the installation. </li>
     <li>Run php artisan migrate and serve the application for testing</li>
-    
+    <li>Default User: admin@domain.com and Password: password</li>
+</ul>    
 <h3>Creating Forms</h3>
 <p>
 For creating forms, first you need create Model and migration.
