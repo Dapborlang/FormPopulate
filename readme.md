@@ -27,7 +27,8 @@ FormPopulate make use of getColumnListing(string $table) for listing column of a
 You will be redirect to another form for filling more details as shown below.
 <img src="readme/FormPopulate2.jpg" alt="formdetails">
 <ul>
-    <li>In this case, select Form Populate Id="Bank", Exclude="id,updated_at,created_at", Attributes="{"bank":"require","code":"required"}" leave blank all other fields and press Submit</li>
+    <li>In this case, select Form Populate Id="Bank", Exclude="id,updated_at,created_at", Attributes="{"bank":"required","code":"required"}". Leave blank all other fields and press Submit</li>
+    <li>Remember to specify the guarded attribute on the model</li>
 </ul>
 <h4>Hurray! The CRUD operation for Bank is ready</h4>
 https://youtu.be/uK1WyB6rO1o
