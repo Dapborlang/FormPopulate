@@ -75,6 +75,7 @@ class FormPopulateIndexController extends Controller
         $formPopulate->master_keys      =   $request->master_keys;
         $formPopulate->foreign_keys     =   $request->foreign_keys;
         $formPopulate->attribute        =   $request->attribute;
+        $formPopulate->type             =   $request->type;
         $formPopulate->cnotes           =   $request->cnotes;
         $formPopulate->save();
         return redirect()->back();

@@ -35,6 +35,9 @@
                                 Attribute
                             </th>
                             <th>
+                                Type
+                            </th>
+                            <th>
                                 Cnotes
                             </th>
                             <th>
@@ -64,6 +67,9 @@
                             </td>
                             <td>
                                 <textarea rows="5" class="form-control" name="attribute">{{$form->index->attribute}}</textarea>
+                            </td>
+                            <td>
+                                <textarea rows="5" class="form-control" name="type">{{$form->index->type}}</textarea>
                             </td>
                             <td>
                                 <textarea rows="5" class="form-control" name="cnotes">{{$form->index->cnotes}}</textarea>
